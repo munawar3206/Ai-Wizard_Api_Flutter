@@ -29,8 +29,8 @@ class ChatWidget extends StatelessWidget {
               children: [
                 Image.asset(
                   chatIndex == 0
-                      ? 'assets/images/th (1).jpeg'
-                      : "assets/images/OIP.jpeg",
+                      ? 'assets/images/user.png'
+                      : "assets/images/th1.png",
                   height: 30,
                   width: 30,
                 ),

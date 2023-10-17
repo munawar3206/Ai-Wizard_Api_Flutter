@@ -48,7 +48,10 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
-        leading: Image.asset("assets/images/OIP.jpeg"),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset("assets/images/th1.png"),
+        ),
         title: const Text("A!Wizard"),
         actions: [
           IconButton(
