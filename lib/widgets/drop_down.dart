@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:quizapp/models/models.dart';
-import 'package:quizapp/services/api.dart';
+
 import 'package:quizapp/widgets/text_widget.dart';
 
 import '../constants/constants.dart';

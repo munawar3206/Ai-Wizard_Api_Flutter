@@ -107,6 +107,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  internet_connectivity_checker:
+    dependency: "direct main"
+    description:
+      name: internet_connectivity_checker
+      sha256: "31e46afc7bcb616dfdd44ad8731fee003a1eb1b3dcc12202984ef5f91886771e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   js:
     dependency: transitive
     description:
@@ -155,6 +163,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  network_connectivity:
+    dependency: "direct main"
+    description:
+      name: network_connectivity
+      sha256: f8242dc2c2e3e83725813e1ec1129c561e632dea3cdeabcf43b3313de42b18ed
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   path:
     dependency: transitive
     description:
