@@ -30,7 +30,8 @@ class ApiService {
         return ModelsModel.modelsFromSnapshot(temp);
       } else {
         log("HTTP Status Code: ${response.statusCode}");
-        throw HttpException("Failed to fetch models. Status code: ${response.statusCode}");
+        throw HttpException(
+            "Failed to fetch models. Status code: ${response.statusCode}");
       }
     } catch (error) {
       log("error $error");
@@ -80,7 +81,8 @@ class ApiService {
         return chatList;
       } else {
         log("HTTP Status Code: ${response.statusCode}");
-        throw HttpException("Failed to send message. Status code: ${response.statusCode}");
+        throw HttpException(
+            "Failed to send message. Status code: ${response.statusCode}");
       }
     } catch (error) {
       log("error $error");
@@ -128,7 +130,8 @@ class ApiService {
         return chatList;
       } else {
         log("HTTP Status Code: ${response.statusCode}");
-        throw HttpException("Failed to send message. Status code: ${response.statusCode}");
+        throw HttpException(
+            "Failed to send message. Status code: ${response.statusCode}");
       }
     } catch (error) {
       log("error $error");
