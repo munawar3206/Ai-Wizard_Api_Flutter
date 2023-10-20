@@ -1,4 +1,5 @@
-# quizapp
+# Aiwizard
+
 
 A new Flutter project.
 
