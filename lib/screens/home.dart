@@ -1,14 +1,15 @@
+import 'dart:async';
 import 'dart:developer';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/controller/models_provider.dart';
 import 'package:quizapp/services/modei_services.dart';
 import 'package:quizapp/widgets/chat_widget.dart';
-
 import '../controller/chat_provider.dart';
-
 import '../widgets/text_widget.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -19,28 +20,45 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  bool _isTyping = false;
+  late StreamSubscription subscription;
+  var isDeviceConnected = false;
+  bool isAlertSet = false;
 
-  late TextEditingController textEditingController;
-  late ScrollController _listScrollController;
-  late FocusNode focusNode;
   @override
   void initState() {
+    getConnectivity();
     _listScrollController = ScrollController();
     textEditingController = TextEditingController();
     focusNode = FocusNode();
     super.initState();
   }
 
+  getConnectivity() => subscription = Connectivity()
+          .onConnectivityChanged
+          .listen((ConnectivityResult result) async {
+        isDeviceConnected = await InternetConnectionChecker().hasConnection;
+        if (!isDeviceConnected && isAlertSet == false) {
+          showDialogBox();
+          setState(() => isAlertSet = true);
+        }
+      });
+
   @override
   void dispose() {
+    subscription.cancel();
     _listScrollController.dispose();
     textEditingController.dispose();
     focusNode.dispose();
+
     super.dispose();
   }
 
-  // List<ChatModel> chatList = [];
+  bool _isTyping = false;
+
+  late TextEditingController textEditingController;
+  late ScrollController _listScrollController;
+  late FocusNode focusNode;
+  
   @override
   Widget build(BuildContext context) {
     log("build called");
@@ -190,4 +208,28 @@ class _ChatScreenState extends State<ChatScreen> {
       });
     }
   }
+
+  showDialogBox() => showCupertinoDialog<String>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+            title: const Text("No Connection"),
+            content: const Text('Please check Internet'),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () async {
+                    Navigator.pop(context, "Cancel");
+                    setState(() => isAlertSet = false);
+                    isDeviceConnected =
+                        await InternetConnectionChecker().hasConnection;
+                    if (!isDeviceConnected) {
+                      showDialogBox();
+                      setState(
+                        () => isAlertSet = true,
+                      );
+                    }
+                    ;
+                  },
+                  child:const Text("OK")),
+            ],
+          ));
 }
