@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/controller/chat_provider.dart';
+import 'package:quizapp/controller/connectivity_provider.dart';
 import 'package:quizapp/controller/models_provider.dart';
 
 import 'screens/home.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => ModelsProvider()),
-          ChangeNotifierProvider(create: (_) => ChatProvider())
+          ChangeNotifierProvider(create: (_) => ChatProvider()),
+          ChangeNotifierProvider(create: (_) => InternetConnectivityProvider())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
